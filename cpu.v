@@ -23,6 +23,11 @@ module cpu(clk, n_reset);
 	decode decode(clk_id, n_reset, inst, opecode, operandA, operandB, operandC);
 	
 	// Execute
+	reg [7:0] reg_id;
+	reg [31:0] reg_val;
+	reg [31:0] mem_addr;
+	reg [31:0] mem_val;
+
 	execute execute(clk_ex, n_reset, opecode, operandA, operandB, operandC, reg_id, reg_val, mem_addr, mem_val);
 	
 	// Write Back
