@@ -2,10 +2,10 @@ module execute(clk_ex, n_reset, opecode, operandA, operandB, operandC, reg_id, r
 	input wire clk_ex;
 	input wire n_reset;
 
-	input reg [7:0] opecode;
-	input reg [7:0] operandA;
-	input reg [23:0] operandB;
-	input reg [15:0] operandC;
+	input wire [7:0] opecode;
+	input wire [7:0] operandA;
+	input wire [23:0] operandB;
+	input wire [15:0] operandC;
 
 	output reg [7:0] reg_id;
 	output reg [31:0] reg_val;
@@ -18,11 +18,13 @@ module execute(clk_ex, n_reset, opecode, operandA, operandB, operandC, reg_id, r
 		end else begin
 			case (opecode[5:0])
 				5'b00001 :
-					reg_id <= 8'b01010101;
-					reg_val <= 32'd123;
-					mem_addr <= 32'd567;
-					mem_val <= 32'd999;
-					$display("execute: exec opecode = %d", opecode);
+					begin
+						reg_id <= 8'b01010101;
+						reg_val <= 32'd123;
+						mem_addr <= 32'd567;
+						mem_val <= 32'd999;
+						$display("execute: exec opecode = %d", opecode);
+					end
 				default :
 					$display("execute: undefined instruction, opecode = %d", opecode);
 			endcase

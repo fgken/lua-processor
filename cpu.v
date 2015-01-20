@@ -19,7 +19,7 @@ module cpu(clk, n_reset);
 
 	// Fetch
 	reg [31:0] pc;
-	reg [31:0] inst;
+	wire [31:0] inst;
 	fetch fetch(
 		.clk_if		(clk_if),
 		.n_reset	(n_reset),
@@ -28,10 +28,10 @@ module cpu(clk, n_reset);
 	);
 	
 	// Decode
-	reg [7:0] opecode;
-	reg [7:0] operandA;
-	reg [23:0] operandB;
-	reg [15:0] operandC;
+	wire [7:0] opecode;
+	wire [7:0] operandA;
+	wire [23:0] operandB;
+	wire [15:0] operandC;
 	decode decode(
 		.clk_id		(clk_id),
 		.n_reset	(n_reset),
@@ -43,10 +43,10 @@ module cpu(clk, n_reset);
 	);
 	
 	// Execute
-	reg [7:0] reg_id;
-	reg [31:0] reg_val;
-	reg [31:0] mem_addr;
-	reg [31:0] mem_val;
+	wire [7:0] reg_id;
+	wire [31:0] reg_val;
+	wire [31:0] mem_addr;
+	wire [31:0] mem_val;
 
 	execute execute(
 		.clk_ex		(clk_ex),

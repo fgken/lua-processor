@@ -1,5 +1,7 @@
-module clock_generator(clk, n_reset, clk_if, clk_id, clk_ex, clk_mem, clk_wb);
+module clock_generator(clk, n_reset, clk_if, clk_id, clk_ex, clk_wb);
 	input wire clk;
+	input wire n_reset;
+	
 	output wire clk_if;
 	output wire clk_id;
 	output wire clk_ex;
@@ -21,9 +23,9 @@ module clock_generator(clk, n_reset, clk_if, clk_id, clk_ex, clk_mem, clk_wb);
 		end
 	end
 
-	assign counter[0] = clk_if;
-	assign counter[1] = clk_id;
-	assign counter[2] = clk_ex;
-	assign counter[3] = clk_wb;
+	assign clk_if = counter[0];
+	assign clk_id = counter[1];
+	assign clk_ex = counter[2];
+	assign clk_wb = counter[3];
 endmodule
 
